@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-use PDO;
+use \PDO as PDO;
 
 class Producto
 {
