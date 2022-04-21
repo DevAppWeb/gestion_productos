@@ -4,34 +4,37 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5a5322191289ef97dd566b5a5514ac4",
+    "content-hash": "5b0d9746c8ef3c0f078e3f38395eb1d7",
     "packages": [
         {
             "name": "eftec/bladeone",
-            "version": "1.9",
+            "version": "4.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EFTEC/BladeOne.git",
-                "reference": "56d84eea1db85e9f4720e0540d4774dc9f615caf"
+                "reference": "b8eb8be9952cd0113469e2ec1e406e075ca433ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EFTEC/BladeOne/zipball/56d84eea1db85e9f4720e0540d4774dc9f615caf",
-                "reference": "56d84eea1db85e9f4720e0540d4774dc9f615caf",
+                "url": "https://api.github.com/repos/EFTEC/BladeOne/zipball/b8eb8be9952cd0113469e2ec1e406e075ca433ad",
+                "reference": "b8eb8be9952cd0113469e2ec1e406e075ca433ad",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4"
+                "ext-json": "*",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "suggest": {
+                "eftec/bladeonehtml": "Extension to create forms",
+                "ext-mbstring": "This extension is used if it's active"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.9-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "eftec\\": "vendor/eftec/"
+                    "eftec\\bladeone\\": "lib/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -48,14 +51,16 @@
             "homepage": "https://github.com/EFTEC/BladeOne",
             "keywords": [
                 "blade",
+                "php",
                 "template",
+                "templating",
                 "view"
             ],
             "support": {
                 "issues": "https://github.com/EFTEC/BladeOne/issues",
-                "source": "https://github.com/EFTEC/BladeOne/tree/master"
+                "source": "https://github.com/EFTEC/BladeOne/tree/4.5.3"
             },
-            "time": "2017-07-21T18:47:58+00:00"
+            "time": "2022-03-28T14:33:29+00:00"
         }
     ],
     "packages-dev": [],

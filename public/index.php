@@ -8,8 +8,7 @@ use App\Producto;
 
 $views = __DIR__ . '/../views';
 $cache = __DIR__ . '/../cache';
-define("BLADEONE_MODE", 1); // (optional) 1=forced (test),2=run fast (production), 0=automatic, default value.
-$blade = new BladeOne($views, $cache);
+$blade = new BladeOne($views, $cache, BladeOne::MODE_DEBUG);
 
 try {
     $bd = BD::getConexion();
@@ -17,10 +16,40 @@ try {
     die("Error en la conexión con la BD");
 }
 
-try {
+if (isset($_POST['borrar-producto'])) {
+    $productId = trim(filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING));
+    $producto = new Producto();
+    $producto->setId($productId);
+    $producto->elimina($bd);
+    echo $blade->run('productos', compact('productos'));
+} else if (isset($_POST['form-actualizar-producto'])) {
+    $productId = trim(filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING));
+    $producto = Producto::recuperaProductoPorId($bd);
+    echo $blade->run('form-actualizar-producto', compact('producto'));
+} else if (isset($_POST['actualizar-producto'])) {
+    $productId = trim(filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING));
+    $nombre = trim(filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING));
+    $descripcion = trim(filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING));
+    $pvp = trim(filter_input(INPUT_POST, 'pvp', FILTER_SANITIZE_STRING));
+    $producto = Producto::recuperaProductoPorId($bd);
+    $producto->setNombre($nombre);
+    $producto->setDescripcion($descripcion);
+    $producto->setPvp($pvp);
+    $producto->persiste($bd);
+    $productoActualizado = true;
+    echo $blade->run('productos', compact('productos', 'productoActualizado'));
+} else if (isset($_POST['form-crear-producto'])) {
+    echo $blade->run('form-crear-producto');
+} else if (isset($_POST['crear-producto'])) {
+    $nombre = trim(filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING));
+    $descripcion = trim(filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING));
+    $pvp = trim(filter_input(INPUT_POST, 'pvp', FILTER_SANITIZE_STRING));
+    $producto = new Producto($nombre, $descripcion, $pvp);
+    $producto->persiste($bd);
+    $productoCreado = true;
+    echo $blade->run('productos', compact('productos', 'productoCreado'));
+} else {
     $productos = Producto::recuperaProductos($bd);
-} catch (PDOException $ex) {
-    die("Error al recuperar los productos " . $ex->getMessage());
+    echo $blade->run('productos', compact('productos'));
 }
-echo $blade->run('productos', compact('productos'));
 
