@@ -27,9 +27,11 @@
     <div class="form-group col-md-6">
         <label for="familia">Familia</label>
         <select id="familia" class="form-control" name="familia">
-            <?php foreach ($familias as $familia): ?>
-                <option value='<?= $familia->cod ?>'><?= $familia->nombre ?></option>
-            <?php endforeach ?>
+            <option value='CAMARA'>CAMARA</option>
+            <option value='MP3'>MP3</option>
+            <option value='EBOOK'>EBOOK</option>
+            <option value='IMPRES'>IMPRES</option>
+            <option value='MEMFLA'>MEMFLA</option>  
         </select>
     </div>
     <input type="submit" class="btn btn-primary mr-3" name="crear-producto" value="Crear">

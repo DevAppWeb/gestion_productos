@@ -9,7 +9,12 @@
 @endif
 @if(isset($productoActualizado))
 <div class="alert alert-success h-100 mt-3">
-    <p>Prodducto actualizado con éxito</p>
+    <p>Producto actualizado con éxito</p>
+</div>
+@endif
+@if(isset($productoEliminado))
+<div class="alert alert-success h-100 mt-3">
+    <p>Producto eliminado con éxito</p>
 </div>
 @endif
 <form action='index.php' method='POST' style='display:inline'>

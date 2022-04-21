@@ -90,7 +90,7 @@ class Producto
         return $productos;
     }
     
-    public static function recuperaProductoPorId(PDO $bd, int $id): ?Producto
+    public static function recuperaProductoPorId(PDO $bd, $id): ?Producto
     {
         $bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
         $sql = "select * from productos where id = :id";
