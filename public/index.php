@@ -18,8 +18,7 @@ try {
 
 if (isset($_POST['borrar-producto'])) {
     $productId = trim(filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING));
-    $producto = new Producto();
-    $producto->setId($productId);
+    $producto = Producto::recuperaProductoPorId($bd, $productId);
     $producto->elimina($bd);
     $productoEliminado = true;
     $productos = Producto::recuperaProductos($bd);
